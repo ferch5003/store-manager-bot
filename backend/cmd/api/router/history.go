@@ -38,7 +38,7 @@ func NewUserRouter(app *fiber.App,
 }
 
 func (h historyRouter) Register() {
-	h.App.Use("/ws", func(c *fiber.Ctx) error {
+	h.App.Use("/histories", func(c *fiber.Ctx) error {
 		if websocket.IsWebSocketUpgrade(c) {
 			c.Locals("allowed", true)
 			return c.Next()
@@ -47,6 +47,6 @@ func (h historyRouter) Register() {
 	})
 
 	h.App.Route("/histories", func(api fiber.Router) {
-		api.Get("/:id", websocket.New(h.Handler.HistoryChat)).Name("get")
+		api.Get("/", websocket.New(h.Handler.HistoryChat)).Name("get")
 	}, "users.")
 }
