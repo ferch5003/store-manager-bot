@@ -1,0 +1,38 @@
+version: '3'
+
+volumes:
+  pgdata:
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: ./Dockerfile
+    restart: always
+    ports:
+      - "3000:80"
+    deploy:
+      mode: replicated
+      replicas: 1
+    env_file:
+      - ./backend/.env
+    user: '${UID}:${GID}'
+    depends_on:
+      - postgres-bot
+
+  postgres-bot:
+    image: "postgres:latest"
+    ports:
+      - "5432:5432"
+    restart: always
+    deploy:
+      mode: replicated
+      replicas: 1
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: hackathon_bot
+      PGDATA: /var/lib/postgresql/data/pgdata
+    volumes:
+      - ./pgdata/histories.sql:/docker-entrypoint-initdb.d/histories.sql
+    user: '${UID}:${GID}'
