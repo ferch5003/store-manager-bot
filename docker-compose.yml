@@ -31,7 +31,7 @@ services:
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: password
-      POSTGRES_DB: store_manager_bot
+      POSTGRES_DB: store-manager-bot
       PGDATA: /var/lib/postgresql/data/pgdata
     volumes:
       - ./pgdata/histories.sql:/docker-entrypoint-initdb.d/histories.sql

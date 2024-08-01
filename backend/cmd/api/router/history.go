@@ -3,12 +3,17 @@ package router
 import (
 	"backend/cmd/api/handler"
 	"backend/config"
+	"backend/internal/history"
 	"github.com/gofiber/contrib/websocket"
 	"github.com/gofiber/fiber/v2"
 	"go.uber.org/fx"
 )
 
-var NewHistoryModule = fx.Module("user",
+var NewHistoryModule = fx.Module("history",
+	// Register Repository & Service
+	fx.Provide(history.NewRepository),
+	fx.Provide(history.NewService),
+
 	// Register Handler
 	fx.Provide(handler.NewHistoryHandler),
 

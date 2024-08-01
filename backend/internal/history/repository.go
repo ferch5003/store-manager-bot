@@ -4,6 +4,7 @@ import (
 	"backend/internal/domain"
 	"context"
 	"github.com/jmoiron/sqlx"
+	"log"
 )
 
 // Queries.
@@ -11,7 +12,8 @@ const (
 	_getAllHistoriesStmt = `SELECT id, user_message, bot_response, feedback FROM histories;`
 	_saveHistoryStmt     = `INSERT INTO 
     						histories (user_message, bot_response, feedback)
-							VALUES $1, $2, $3;`
+							VALUES ($1, $2, $3)
+							RETURNING id;`
 )
 
 type Repository interface {
@@ -53,9 +55,13 @@ func (r *repository) Save(ctx context.Context, history domain.History) (int, err
 
 	defer func() {
 		err = stmt.Close()
+		if err != nil {
+			log.Println(err)
+		}
 	}()
 
-	res, err := stmt.ExecContext(ctx, history.UserMessage, history.BotResponse, history.Feedback)
+	var id int
+	err = stmt.QueryRowxContext(ctx, history.UserMessage, history.BotResponse, history.Feedback).Scan(&id)
 	if err != nil {
 		if rollbackErr := tx.Rollback(); rollbackErr != nil {
 			return 0, rollbackErr
@@ -68,10 +74,5 @@ func (r *repository) Save(ctx context.Context, history domain.History) (int, err
 		return 0, err
 	}
 
-	id, err := res.LastInsertId()
-	if err != nil {
-		return 0, err
-	}
-
-	return int(id), err
+	return id, nil
 }

@@ -13,7 +13,7 @@ type EnvVars struct {
 
 	// Vertex Model environments.
 	ProjectID  string
-	LocationID string
+	Region     string
 	EndpointID string
 
 	SAPrivateKeyID      string
@@ -32,7 +32,7 @@ func NewConfigurations() (*EnvVars, error) {
 	dsn := os.Getenv("DSN")
 
 	projectID := os.Getenv("PROJECT_ID")
-	locationID := os.Getenv("LOCATION_ID")
+	region := os.Getenv("REGION")
 	endpointID := os.Getenv("ENDPOINT_ID")
 
 	saPrivateKeyID := os.Getenv("SA_PRIVATE_KEY_ID")
@@ -46,7 +46,7 @@ func NewConfigurations() (*EnvVars, error) {
 		DSN:  dsn,
 
 		ProjectID:  projectID,
-		LocationID: locationID,
+		Region:     region,
 		EndpointID: endpointID,
 
 		SAPrivateKeyID:      saPrivateKeyID,

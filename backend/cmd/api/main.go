@@ -4,9 +4,7 @@ import (
 	"backend/cmd/api/bootstrap"
 	"backend/cmd/api/router"
 	"backend/config"
-	"backend/internal/platform/files"
 	"backend/internal/platform/postgresql"
-	"backend/internal/platform/vertex"
 	"context"
 	"go.uber.org/fx"
 	"go.uber.org/zap"
@@ -19,23 +17,7 @@ func main() {
 		log.Fatalln(err)
 	}
 
-	ctx := context.Background()
-
 	logger, err := zap.NewProduction()
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	credentials, err := files.GetFile("config/client_secret.json")
-	if err != nil {
-		log.Fatalln(err)
-	}
-
-	vertexClient, err := vertex.NewVertexClient(
-		ctx, configurations.ProjectID,
-		configurations.LocationID,
-		configurations.EndpointID,
-		credentials)
 	if err != nil {
 		log.Fatalln(err)
 	}
@@ -62,9 +44,6 @@ func main() {
 
 		// creates: *sqlx.DB
 		fx.Provide(postgresql.NewConnection),
-
-		// creates: *vertx.Client
-		fx.Supply(vertexClient),
 
 		// Provide modules
 		router.NewHistoryModule,
