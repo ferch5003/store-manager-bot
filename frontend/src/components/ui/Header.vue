@@ -3,7 +3,7 @@ import ThemeSwitcher from '@/components/ui/ThemeSwitcher.vue'
 </script>
 
 <template>
-<div class="flex flex-row-reverse">
+<div class="flex justify-end">
   <ThemeSwitcher></ThemeSwitcher>
 </div>
 </template>

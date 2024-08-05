@@ -18,7 +18,7 @@
 
     <!-- moon icon -->
     <svg
-      class="swap-off h-10 w-10 fill-current"
+      class="swap-off h-10 w-10 fill-current text-white"
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 24 24">
       <path

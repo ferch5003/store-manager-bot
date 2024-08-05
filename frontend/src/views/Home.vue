@@ -4,7 +4,7 @@ import Header from '@/components/ui/Header.vue'
 </script>
 
 <template>
-<div class="flex flex-col space-y-4 p-6">
+<div class="flex flex-col space-y-4 p-6 h-full">
   <Header />
   <Chat />
 </div>

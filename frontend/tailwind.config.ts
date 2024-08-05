@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss'
 import daisyui from "daisyui"
+import themes from "daisyui/src/theming/themes"
 import typography from '@tailwindcss/typography';
 
 export default {
@@ -15,7 +16,20 @@ export default {
     typography,
   ],
   daisyui: {
-    themes: ["light", "dark", "cupcake"],
+    themes: [{
+      "light": {
+        ...themes.light,
+        primary: "#FBBF24",
+        secondary: "#2460FB",
+        "info-content": "#D1D5DB"
+      },
+      "dark": {
+        ...themes.dark,
+        primary: "#FBBF24",
+        secondary: "#2460FB",
+        "info-content": "#111827"
+      }
+    }],
   },
 } satisfies Config
 
