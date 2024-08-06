@@ -9,17 +9,15 @@ export class HistoryService  {
   private maxReconnectAttempts: number = 10;
   private messageCallback: ((history: ChatHistory) => void) | null = null;
 
-
   constructor(url: string, reconnectInterval: number = 5000) {
-    this.url = url;
+    this.url = url + "/histories";
     this.reconnectInterval = reconnectInterval;
 
     this.connect()
   }
 
   private connect(): void {
-    const endpoint = this.url + "/histories";
-    this.webSocket = new WebSocket(endpoint);
+    this.webSocket = new WebSocket(this.url);
 
     this.webSocket.onopen = this.onOpen.bind(this);
     this.webSocket.onmessage = this.onMessage.bind(this);
@@ -27,7 +25,7 @@ export class HistoryService  {
     this.webSocket.onclose = this.onClose.bind(this);
   }
 
-  private onOpen(event: Event): void {
+  private onOpen(_: Event): void {
     console.log("WebSocket connection opened");
     this.reconnectAttempts = 0;
   }

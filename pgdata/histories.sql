@@ -8,44 +8,110 @@ CREATE TABLE "histories"(
 ALTER TABLE
     "histories" ADD PRIMARY KEY("id");
 
-INSERT INTO histories(id,user_message,bot_response,feedback,timestamp) VALUES (1,'Quiénes somos','Deal Genius se encarga de tomar los mensajes y automatizar las respuestas de articulos provenientes de Amazon para ayudarle al usuario a obtener articulos que necesite al mejor precio. Refernte a Amazon se guía por cuatro principios: la obsesión por el cliente, la pasión por la innovación, el compromiso con la excelencia operativa y el pensamiento a largo plazo. Nos esforzamos por ser la empresa más centrada en el cliente del mundo, la mejor empleadora y el lugar más seguro para trabajar. Las opiniones de los clientes, las compras en un solo clic, las recomendaciones personalizadas, el servicio Prime, la Logística de Amazon, AWS, la autopublicación Kindle Direct Publishing, Kindle, el programa de formación Career Choice, los dispositivos Fire, Fire TV, Amazon Echo, Alexa, la tecnología Just Walk Out, Amazon Studios o The Climate Pledge son algunos ejemplos en los que Amazon ha sido pionera.','FALSE',NULL);
-INSERT INTO histories(id,user_message,bot_response,feedback,timestamp) VALUES (2,'Que puedo consultar','Deal Genius brinda articulos de la pagina https://www.amazon.com/-/es/','FALSE',NULL);
-INSERT INTO histories(id,user_message,bot_response,feedback,timestamp) VALUES (3,'Que es Alkosto','Lo siento, no podria decirte algo referente diferente a Amazon','FALSE',NULL);
-INSERT INTO histories(id,user_message,bot_response,feedback,timestamp) VALUES (4,'Como puedo vender productos en Amazon','Desde Amazon Sell puedes ganar dinero con los productos referidos a Amazon https://sell.amazon.com/es','FALSE',NULL);
-INSERT INTO histories(id,user_message,bot_response,feedback,timestamp) VALUES (5,'Principio de liderazgo','Ya seas manager de un equipo grande o trabajes de manera individual, eres un líder en Amazon. A menos que conozcas otros mejores, estos son nuestros principios de liderazgo. Actúa como líder.','FALSE',NULL);
-INSERT INTO histories(id,user_message,bot_response,feedback,timestamp) VALUES (6,'Pasión por los clientes','Las personas líderes piensan primero en los clientes y trabajan de acuerdo a este principio. Ponen todo su empeño en ganarse su confianza y mantenerla. Aunque prestan atención a la competencia, lo que realmente les apasiona son los clientes.','FALSE',NULL);
-INSERT INTO histories(id,user_message,bot_response,feedback,timestamp) VALUES (7,'Responsabilidad y compromiso','Las personas líderes son dueñas. Tienen visión de futuro y no sacrifican los valores a largo plazo por resultados inmediatos. Actúan en nombre de toda la compañía, sin limitarse a su propio equipo. Nunca dicen “ese no es mi trabajo”.','FALSE',NULL);
-INSERT INTO histories(id,user_message,bot_response,feedback,timestamp) VALUES (8,'Inventar y simplificar','Las personas líderes esperan y demandan innovación e invención por parte de sus equipos y siempre encuentran maneras de simplificar. Se mantienen informadas de lo que ocurre a su alrededor, buscan nuevas ideas en todas partes y no están limitadas por el “no lo hemos inventado aquí”. Al ser innovadoras, aceptan que pueden ser incomprendidas durante mucho tiempo.','FALSE',NULL);
-INSERT INTO histories(id,user_message,bot_response,feedback,timestamp) VALUES (9,'Tener razón, casi siempre','Las personas líderes, casi siempre tienen razón. Tienen buen criterio e intuición. Están abiertas a escuchar opiniones distintas y cuestionan sus propias creencias.','FALSE',NULL);
-INSERT INTO histories(id,user_message,bot_response,feedback,timestamp) VALUES (10,'Aprender y tener curiosidad','Las personas líderes nunca lo dan todo por aprendido y siempre tratan de mejorar. Muestran curiosidad por conocer y explorar nuevas posibilidades.','FALSE',NULL);
-INSERT INTO histories(id,user_message,bot_response,feedback,timestamp) VALUES (11,'Quiero saber los primeros 5 audifonos inalambricos de la pagina','Si claro, te dejo una la siguiente lista:
-- https://www.amazon.com/-/es/Auriculares-Bluetooth-B8-auriculares-inalámbricos/dp/B0CFV9XR2Q/ref=sr_1_1?crid=1ITQ2RGKAK7UC&dib=eyJ2IjoiMSJ9.5_1G9wKQezhinEY6KaZiuvBXl8Xd_aKIltTaTX-yniaCeSREPGAblU27qszry_7e_9bO8bO9-ADhGbGRiY6zlslM2UXSnOZj3xjwGXEJD-UwFibHcSd1S64wJLjOArsHdB54CfxEXz5lTuBXTynJG8R0vBvJedgSJc0tvko97v4O_deZ9nNJ8FF4e6eflFtKUp-h715hq19_1ExANyaRBi5wAudfmWDvg0vlLgbINIo.xvSfZp3cxtw4UXXUZQ4rjJtn5swGsjvLV2IQt-1vtC0&dib_tag=se&keywords=audifonos+inalambricos&qid=1722221905&sprefix=audifonos%2Caps%2C173&sr=8-1
-- https://www.amazon.com/-/es/Auriculares-reproducción-ecualizador-auriculares-inalámbricos/dp/B09LYF2ST7/ref=sr_1_2?crid=1ITQ2RGKAK7UC&dib=eyJ2IjoiMSJ9.5_1G9wKQezhinEY6KaZiuvBXl8Xd_aKIltTaTX-yniaCeSREPGAblU27qszry_7e_9bO8bO9-ADhGbGRiY6zlslM2UXSnOZj3xjwGXEJD-UwFibHcSd1S64wJLjOArsHdB54CfxEXz5lTuBXTynJG8R0vBvJedgSJc0tvko97v4O_deZ9nNJ8FF4e6eflFtKUp-h715hq19_1ExANyaRBi5wAudfmWDvg0vlLgbINIo.xvSfZp3cxtw4UXXUZQ4rjJtn5swGsjvLV2IQt-1vtC0&dib_tag=se&keywords=audifonos+inalambricos&qid=1722221905&sprefix=audifonos%2Caps%2C173&sr=8-2
-- https://www.amazon.com/-/es/Auriculares-inalámbricos-reproducción-inalámbrica-auriculares/dp/B0D7CSJTGQ/ref=sr_1_3?crid=1ITQ2RGKAK7UC&dib=eyJ2IjoiMSJ9.5_1G9wKQezhinEY6KaZiuvBXl8Xd_aKIltTaTX-yniaCeSREPGAblU27qszry_7e_9bO8bO9-ADhGbGRiY6zlslM2UXSnOZj3xjwGXEJD-UwFibHcSd1S64wJLjOArsHdB54CfxEXz5lTuBXTynJG8R0vBvJedgSJc0tvko97v4O_deZ9nNJ8FF4e6eflFtKUp-h715hq19_1ExANyaRBi5wAudfmWDvg0vlLgbINIo.xvSfZp3cxtw4UXXUZQ4rjJtn5swGsjvLV2IQt-1vtC0&dib_tag=se&keywords=audifonos+inalambricos&qid=1722221905&sprefix=audifonos%2Caps%2C173&sr=8-3
-- https://www.amazon.com/-/es/Auriculares-inalámbricos-reproducción-auriculares-impermeable/dp/B0CPJG173J/ref=sr_1_4?crid=1ITQ2RGKAK7UC&dib=eyJ2IjoiMSJ9.5_1G9wKQezhinEY6KaZiuvBXl8Xd_aKIltTaTX-yniaCeSREPGAblU27qszry_7e_9bO8bO9-ADhGbGRiY6zlslM2UXSnOZj3xjwGXEJD-UwFibHcSd1S64wJLjOArsHdB54CfxEXz5lTuBXTynJG8R0vBvJedgSJc0tvko97v4O_deZ9nNJ8FF4e6eflFtKUp-h715hq19_1ExANyaRBi5wAudfmWDvg0vlLgbINIo.xvSfZp3cxtw4UXXUZQ4rjJtn5swGsjvLV2IQt-1vtC0&dib_tag=se&keywords=audifonos+inalambricos&qid=1722221905&sprefix=audifonos%2Caps%2C173&sr=8-4','FALSE',NULL);
-INSERT INTO histories(id,user_message,bot_response,feedback,timestamp) VALUES (12,'El gaming keyboard mas barato de la pagina','Aqui te dejo esta opción:
-- Teclado para juegos al 65%, mini teclado retroiluminado con cable, ultracompacto, anti-fantasma, sin conflictos, 68 teclas, teclado con cable de membrana para juegos para PC, laptop, Mac: https://www.amazon.com/-/es/GEODMAER-retroiluminado-ultracompacto-anti-fantasma-conflictos/dp/B0D3CZYCH2/ref=sr_1_81?_encoding=UTF8&content-id=amzn1.sym.8148f1e1-83ed-498f-85be-ff288b197da7&dib=eyJ2IjoiMSJ9.FhAwj13XzCIDleP0DMVLAkmMHdg6FqTCIQtDgHgfYvG9qcgnfrqfFZQNc-oi4bSK1mevut1OPK5eX4OtjEuc-g.8N1e4MvOP4rKO6jWuH3FPwnoYWshgkh3La65da1YeS0&dib_tag=se&keywords=gaming+keyboard&pd_rd_r=038703fa-7a70-4ef2-b137-6d8a93a62e4d&pd_rd_w=PkFG1&pd_rd_wg=NRa7W&pf_rd_p=8148f1e1-83ed-498f-85be-ff288b197da7&pf_rd_r=AAR5VJM129TVZCYXXJN7&qid=1722222148&sr=8-81','FALSE',NULL);
-INSERT INTO histories(id,user_message,bot_response,feedback,timestamp) VALUES (13,'Pensar en grande','Pensar en pequeño se traduce en resultados pequeños. Las personas líderes crean y transmiten retos audaces que inspiran resultados. Piensan diferente y se anticipan a las necesidades de los clientes para encontrar nuevas maneras de darles un mejor servicio.','FALSE',NULL);
-INSERT INTO histories(id,user_message,bot_response,feedback,timestamp) VALUES (14,'Ganarse la confianza','Las personas líderes escuchan atentamente, hablan con franqueza y son respetuosas. Son abiertamente autocríticas, incluso si esto las pone en una situación difícil o incómoda. Las personas líderes son conscientes de que ni ellas ni su equipo huelen a rosas. Se comparan a sí mismas y a su equipo con los mejores.','FALSE',NULL);
-INSERT INTO histories(id,user_message,bot_response,feedback,timestamp) VALUES (15,'Tener determinación; discrepar y comprometerse','Las personas líderes están obligadas a cuestionar las decisiones de forma respetuosa cuando no están de acuerdo, aunque sea incómodo o agotador. Ser líder significa mostrar determinación y tenacidad. No ceder ante la presión del grupo solo para lograr la armonía en su equipo. Cuando se toma una decisión, la apoyan totalmente.','FALSE',NULL);
-INSERT INTO histories(id,user_message,bot_response,feedback,timestamp) VALUES (16,'El gaming keyboard mas carode la pagina','Aqui te dejo esta opción:
-- Teclado para juegos personalizado ROG Azoth Extreme 75, Chasis de aluminio, Placa de posicionamiento de fibra de carbono, Montaje de junta ajustable, Amortiguación de tres capas, Pantalla táctil OLED: https://www.amazon.com/-/es/personalizado-aluminio-posicionamiento-ajustable-Amortiguación/dp/B0D45ZHYZJ/ref=sr_1_5?_encoding=UTF8&content-id=amzn1.sym.8148f1e1-83ed-498f-85be-ff288b197da7&dib=eyJ2IjoiMSJ9.krBy_or9DvoELz_22R-AzSbN3S0PH9Eh5Op0rKuak6K4AJikNt8-Ok0OePq01_LXXTVtYMCMjiJZz-N8dsUqDNoPUh2MSDIv1x6UgWAw7wCY4qo7kaTRB2MXxolqsDe0-XRegtBBa0Q1H4QQcG9FRFU4pjxV5sHxo0JRyKQWxGsRvJyEqwcUEXBFIM4PbLUejiuyCZr58B7xsPz2lRPGls1F-PCaaB5X1dYhUbwxe_4.KxhIFyJOb2e0aswg8dULZ0Dk9kGhJwsXk8doL2ALPaY&dib_tag=se&keywords=gaming+keyboard&pd_rd_r=038703fa-7a70-4ef2-b137-6d8a93a62e4d&pd_rd_w=PkFG1&pd_rd_wg=NRa7W&pf_rd_p=8148f1e1-83ed-498f-85be-ff288b197da7&pf_rd_r=AAR5VJM129TVZCYXXJN7&qid=1722222255&sr=8-5','FALSE',NULL);
-INSERT INTO histories(id,user_message,bot_response,feedback,timestamp) VALUES (17,'Obtener resultados','Las personas líderes se centran en los elementos clave para su negocio y obtienen resultados de calidad a tiempo. A pesar de las dificultades, están a la altura de las circunstancias y nunca se conforman.','FALSE',NULL);
-INSERT INTO histories(id,user_message,bot_response,feedback,timestamp) VALUES (18,'Premios y reconocimientos','Desde el primer día, nos hemos esforzado por ser la empresa más centrada en el cliente del mundo. El trabajo que realizamos para nuestros clientes, empleados y las comunidades en las que viven ha obtenido distintos reconocimientos a nivel nacional e internacional. A continuación, te presentamos algunos de ellos.','FALSE',NULL);
-INSERT INTO histories(id,user_message,bot_response,feedback,timestamp) VALUES (19,'Empleados','En España, Amazon ha sido reconocida como “Top Employer 2021” y "Top Employer 2022" por la calidad del entorno laboral y los programas de recursos humanos ofrecidos a los empleados de Amazon en el país. La compañía también ha sido seleccionada por Randstad como “la empresa más atractiva para trabajar en España” y ha sido incluida por LinkedIn en su primera lista “Top Companies: las 25 mejores empresas para trabajar en España”.','FALSE',NULL);
-INSERT INTO histories(id,user_message,bot_response,feedback,timestamp) VALUES (20,'Clientes','Primer puesto en la categoría de marca internacional más valorada según BrandZ, 2019-2020
-Segundo puesto en la categoría Brand Finance Global 500 como marca más valorada del mundo, 2021
-Primer puesto en la categoría de las 50 empresas más comprometidas, 2017 según Forbes
-Primer puesto en la categoría de empresa más fiable según Fortune 100, 2016.
-Segundo puesto en la categoría de empresas más admiradas del mundo, 2017-2021, según Fortune.
-Segundo puesto en la categoría de mejor marca internacional según Interbrand, 2020.
-Segundo puesto en el ranking del Reputation Institute US RepTrak® 100 como la empresa más valorada, 2017
-Tercer puesto otorgado por el Boston Consulting Group a las empresas más innovadoras, 2021
-Cuarto puesto en el ranking de las marcas más valoradas del mundo, 2019-2020, elaborado por Forbes
-Quinto puesto en el ranking de las marcas más fiables del mundo elaborado por Morning Consult, 2021
-Quinto puesto en la categoría de mejor marca internacional según YouGov, 2020
-Nombrada entre las empresas más influyentes, 2021, de la revista TIME
-Nombrada entre las empresas más justas de la categoría JUST 100 por JUST Capital, 2018-2021
-Reconocimiento a la inclusión Disability:IN como empresa innovadora del año, 2019.','FALSE',NULL);
+INSERT INTO "histories" ("id","user_message","bot_response","feedback","timestamp")
+VALUES
+    (1,'Quiénes somos','Deal Genius se encarga de tomar los mensajes y automatizar las respuestas de articulos provenientes de MercadoLibre que define: Democratizamos el comercio y los servicios financieros para transformar la vida de millones de personas en América Latina.','FALSE',''),
+    (2,'Que puedo consultar','Deal Genius brinda articulos de la pagina https://www.mercadolibre.com.co','FALSE',''),
+    (3,'Que es Alkosto','Lo siento, no podria decirte algo referente diferente a MercadoLibre','FALSE',''),
+    (4,'Como puedo vender productos en MercadoLibre','Si jamás has vendido algo por Internet, Mercado Libre es el lugar perfecto para dar los primeros pasos y garantizarte una buena experiencia. La clave está en aprender el proceso y atender algunos consejos que pueden ayudarte a resolver mejor la operación.
+
+No sólo es súper sencillo sino que la publicación y oferta de tu producto es totalmente gratuita. Sólo pagas un cargo por la venta realizada.
+
+Sigue estos pasos para publicar por primera vez:
+
+1. Ingresa
+Ingresa a tu cuenta y haz clic en la opción Vender.
+
+2. Escoge qué deseas publicar
+Productos – Vehículos – Inmuebles – Servicios.
+
+Escribe un título para tu publicación. Cuanto más preciso sea el título más fácil será para tus compradores saber que ofreces lo que están buscando.
+Selecciona la categoría de tu producto. Tomando el título de la publicación, te sugerimos una categoría para el producto que deseas vender. Verifica que se adapte a lo que estás ofreciendo o escoge otras.
+
+3. Completa la información de tu producto
+Ingresa fotos de tu producto: No te olvides que en la venta online una buena imagen es fundamental.
+Indica el stock: Indica la cantidad de productos que tienes disponible de cada variante para automatizar tu control de stock.
+Completa el código universal de tu producto.
+Indica si tu producto tiene variantes: Un producto puede variar por color, material, tamaño, etc. Una variante es cada una de estas opciones de un mismo producto, sin que eso implique un cambio en el precio.
+Completa la ficha técnica: Allí podrás cargar las características más importantes del producto como medida, modelo, marca y material.
+Revisa tu publicación, ten en cuenta que si infringes derechos de propiedad intelectual podrías ser denunciado por el titular de los derechos o podríamos pausar o dar de baja tu publicación por incumplimiento a nuestras políticas de publicación.
+
+4. Ingresa el precio del producto
+
+
+5. Escoge el tipo de publicación
+Gratuita, Clásica con exposición alta o Premium con exposición máxima. Las publicaciones son gratuitas. ¡Solo pagas cuando realizas una venta!
+
+Pulsa la opción publicar y ¡listo! Tu producto ya estará a la venta.
+
+
+Puedes entregar tus productos con Mercado Envíos a cualquier parte del país. Ofreciendo envíos gratuitos para el comprador puedes atraer más clientes.
+
+Además, cobrar tus ventas en Mercado Libre es muy sencillo. Puedes ofrecer distintas opciones de pago y hasta facilidades de financiamiento. El dinero de la venta se acredita automáticamente en tu cuenta de Mercado Pago.
+
+Como verás, al publicar tus productos en Mercado Libre puedes brindar un servicio 360: ventas, pagos y envíos, convirtiéndose en una herramienta ágil para potenciar tus ventas de manera práctica y segura.
+
+Referencia: https://vendedores.mercadolibre.com.co/nota/como-publicar-en-mercado-libre-por-primera-vez','FALSE',''),
+    (5,'Cultura: Seis principios orientan nuestras acciones','Nuestro ADN emprendedor es el eje de una empresa cuya cultura prioriza la diversidad, la autonomía y la creatividad.
+
+Trabajamos para que nuestros colaboradores y equipos se sientan protagonistas de su desarrollo mientras crean una experiencia única, centrada en el usuario.
+
+Nuestra estructura, dinámica y abierta a los riesgos, crea un ambiente estimulante y plural, que forma grandes líderes y logra atraer a los mejores talentos de Latinoamérica.','FALSE',''),
+    (6,'Nuestro código de ética: el compromiso de hacer lo correcto','Como empresa líder de la región en industrias claves como el comercio electrónico y los servicios financieros, entendemos que la transparencia es la base de la confianza y la mejor manera de honrar un vínculo cada vez más intenso.
+En Mercado Libre creemos que la formalidad y la seguridad jurídica son pilares de la inclusión y el desarrollo. Somos conscientes de nuestro rol económico y social cada vez más relevante y, como ciudadanos corporativos, además de cumplir estrictamente con las leyes vigentes nos esforzamos para evitar acciones u omisiones inadecuadas en nuestras plataformas y promover las mejores prácticas en los productos y servicios digitales que desarrollamos.
+En tiempos en que la migración digital se acelera e impulsa un cambio cultural profundo, intensificamos nuestros esfuerzos de transparencia e integridad, a fin de garantizar a nuestros usuarios espacios digitales en los que su seguridad y sus derechos estén custodiados con los más altos estándares internacionales.','FALSE',''),
+    (7,'Mercado Libre presenta su segundo Reporte de Transparencia','Las personas líderes son dueñas. Tienen visión de futuro y no sacrifican los valores a largo plazo por resultados inmediatos. Actúan en nombre de toda la compañía, sin limitarse a su propio equipo. Nunca dicen “ese no es mi trabajo”.','FALSE',''),
+    (8,'Inventar y simplificar','El informe tiene como objetivo dar a conocer los esfuerzos que realiza Mercado Libre para garantizar la seguridad de sus servicios digitales. A los conceptos informados en el primer reporte, se incorporan datos sobre los requerimientos de información de usuarios procesados en cumplimiento de la ley.','FALSE',''),
+    (9,'Nuestros esfuerzos y compromisos contra el lavado de activos y el financiamiento del terrorismo','El lavado de activos es un delito en el cual los beneficios de las actividades delictivas se mueven a través de una serie de transacciones financieras diseñadas para ocultar el verdadero origen de los fondos. En Mercado Libre y Mercado Pago desarrollamos controles, acuerdos de colaboración y procesos de mejora continua para evitar que nuestros productos y servicios sean utilizados para cualquier tipo de actividad ilegal o contraria a nuestros términos y condiciones de uso.','FALSE',''),
+    (10,'Directorio y Gobierno Corporativo: el desafío de agregar valor en forma sostenida','Somos muy claros y transparentes en la definición de normas, principios y procedimientos que regulan la estructura y el funcionamiento de nuestra empresa para multiplicar el impacto positivo de nuestras acciones.','FALSE',''),
+    (11,'Quiero saber los primeros 5 audifonos inalambricos de la pagina','Si claro, te dejo una la siguiente lista:
+- https://www.mercadolibre.com.co/audifonos-in-ear-inalambricos-linkon-earspcharge/p/MCO21759292?pdp_filters=item_id:MCO1789249024#is_advertising=true&searchVariation=MCO21759292&position=1&search_layout=stack&type=pad&tracking_id=166f410d-9422-4f6f-9d03-3138022a3981&is_advertising=true&ad_domain=VQCATCORE_LST&ad_position=1&ad_click_id=MDI5NjExOWEtNDczOC00M2FjLWFmMzMtMmRjMjZhNGFjMzcy
+- https://www.mercadolibre.com.co/auriculares-jbl-wave-buds-black/p/MCO24541134?pdp_filters=item_id:MCO1397861507#is_advertising=true&searchVariation=MCO24541134&position=2&search_layout=stack&type=pad&tracking_id=1e089f09-65ad-4e60-85c1-25d5e34f641f&is_advertising=true&ad_domain=VQCATCORE_LST&ad_position=2&ad_click_id=NTI2NjA4ZmYtZjAxZi00ZTFkLWFlZTYtZjY3NzI0OGIzNWYz
+- https://www.mercadolibre.com.co/audifonos-inalambricos-redmi-buds-4-lite-bluetooth-53-color-blanco/p/MCO25881463#polycard_client=search-nordic&searchVariation=MCO25881463&position=6&search_layout=stack&type=product&tracking_id=1e089f09-65ad-4e60-85c1-25d5e34f641f&wid=MCO2060213896&sid=search
+- https://www.mercadolibre.com.co/jbl-headphones-quantum-tws-black-sa-color-negro/p/MCO26031039?pdp_filters=item_id:MCO1795676904#is_advertising=true&searchVariation=MCO26031039&position=4&search_layout=stack&type=pad&tracking_id=1e089f09-65ad-4e60-85c1-25d5e34f641f&is_advertising=true&ad_domain=VQCATCORE_LST&ad_position=4&ad_click_id=YjAwM2U2ZjUtNjQ2ZC00NDRhLWFkYTgtYzVjNDdhZDEzMmUy
+- https://www.mercadolibre.com.co/qcy-h3-anc-audifonos-inalambricos-gamer-diadema-hi-res-bk-color-negro/p/MCO28965708?pdp_filters=item_id:MCO2318098402#is_advertising=true&searchVariation=MCO28965708&position=5&search_layout=stack&type=pad&tracking_id=1e089f09-65ad-4e60-85c1-25d5e34f641f&is_advertising=true&ad_domain=VQCATCORE_LST&ad_position=5&ad_click_id=MmRmMmZmYTctYzhjZi00NWI4LThlMWMtNTViNWU3ZjY2MDY4','FALSE',''),
+    (12,'El gaming keyboard mas barato de la pagina','Aqui te dejo esta opción:
+- Mini Teclado Inalambrico Plegable Portatil, Bluetooth Color del teclado Blanco: https://www.mercadolibre.com.co/mini-teclado-inalambrico-plegable-portatil-bluetooth-color-del-teclado-blanco/p/MCO21340018?pdp_filters=item_id:MCO1434189525#is_advertising=true&searchVariation=MCO21340018&position=1&search_layout=stack&type=pad&tracking_id=13ea4d91-83e2-4807-b107-606f42cfef08&is_advertising=true&ad_domain=VQCATCORE_LST&ad_position=1&ad_click_id=YjljZDNiMWItNTAzYS00MWVkLWFmYWEtZjA3MDQ3NDU2MmZk','FALSE',''),
+    (13,'Somos','La empresa de tecnología líder en comercio electrónico y soluciones fintech de América Latina. Nuestro propósito es democratizar el comercio y los servicios financieros para transformar la vida de millones de personas en la región.','FALSE',''),
+    (14,'Hacemos','Desarrollamos productos tecnológicos que permiten a millones de usuarios comprar, vender, anunciar, enviar y pagar a través de Internet de forma fácil, segura y eficiente.','FALSE',''),
+    (15,'Innovamos','La tecnología es la herramienta que nos permite desarrollar soluciones escalables, capaces de generar el impacto necesario para impulsar la inclusión y el desarrollo.','FALSE',''),
+    (16,'El gaming keyboard mas caro de la pagina','Aqui te dejo esta opción:
+- Smsom Mechanical Keyboard, Wired Gaming Keyboard: https://articulo.mercadolibre.com.co/MCO-2263994438-smsom-mechanical-keyboard-wired-gaming-keyboard-_JM#polycard_client=search-nordic&position=5&search_layout=stack&type=item&tracking_id=7557c533-57b3-4510-9511-a01135992a05','FALSE',''),
+    (17,'Cuidamos','La sustentabilidad es un modo de hacer totalmente integrado a nuestra estrategia de negocio. Para nosotros, generar valor económico, social y ambiental van de la mano.','FALSE',''),
+    (18,'Trabajamos','El ADN emprendedor que nos guía promueve una cultura que prioriza la diversidad, la autonomía y la creatividad, a través de un entorno dinámico y abierto a los riesgos.','FALSE',''),
+    (19,'Crecemos','Somos la primera empresa argentina en ingresar al Nasdaq 100, el selecto grupo de las compañías tecnológicas más importantes de Wall Street.','FALSE',''),
+    (20,'Comunicamos','Somos conscientes de nuestro rol social y económico cada vez más relevante. Compartimos nuestras acciones y noticias corporativas.','FALSE',''),
+    (21,'Cuando consulte por algun producto quiero que me des el link del producto de MercadoLibre Colombia, con este formato:
+protocolo: https:// prefijo articulo: articulo. dominio de la pagina: mercadolibre.com. pais colombia: co/ ID del producto: MCO-2376843708-teclado-gaming-inalambrico-dry-studio-black-diamond-75-rgb-_JM#polycard_client=search-nordic&position=6&search_layout=stack&type=item&tracking_id=6e3b3470-ab11-4598-9fda-0bc88f32f16b','Listo, cada vez que consultes un producto nuevo te mandare el link de consulta y el precio actual en precio Colombian (COP) con el formato que me mostraste.','FALSE',''),
+    (22,'Cuales son las categorias para electrodomesticos','Artefactos de Cuidado Personal
+Climatización
+Cocción
+Dispensadores y Purificadores
+Lavado
+Pequeños Electrodomésticos
+Refrigeración
+Otros','FALSE',''),
+    (23,'Cuales son las categorias para Consolas y Videojuegos','Accesorios para Consolas
+Accesorios para PC Gaming
+Consolas
+Pinballs y Máquinas de Juego
+Repuestos para Consolas
+Videojuegos
+Otros','FALSE',''),
+    (24,'Cuales son las categorias para Celulares y Telefonos','Accesorios para Celulares
+Celulares y Smartphones
+Gafas de Realidad Virtual
+Radios y Handies
+Repuestos de Celulares
+Smartwatches y Accesorios
+Tarificadores y Cabinas
+Telefonía Fija e Inalámbrica
+Telefonía IP
+Otros','FALSE',''),
+    (25,'Quiero las tres primeras ofertas para Accesorios para Vehículos','Si claro, te dejo una la siguiente lista:
+- https://www.mercadolibre.com.co/radio-carro-aiwa-android-11-pantalla-9-tactil-2-din-2gb-32-gb-aw-a802bs/p/MCO29652527?pdp_filters=deal:MCO779366-1&hide_psmb=true#promotion_type=TODAY_PROMOTION&searchVariation=MCO29652527&deal_print_id=287675f5-aecc-429f-a481-abc3d3e754ff&position=8&search_layout=grid&type=product&tracking_id=8f9b89ad-a576-4904-b83a-0e1231391ab0&deal_print_id=e317dfdb-d962-489e-9ac9-c88e4f3636b3&promotion_type=TODAY_PROMOTION
+- https://articulo.mercadolibre.com.co/MCO-556641635-maleteros-tomcat-50lts-litros-tipo-shad-givi-envio-gratis-_JM?hide_psmb=true#promotion_type%3DTODAY_PROMOTION%26deal_print_id%3D287675f5-aecc-429f-a481-abc3d3e754ff%26position%3D16%26search_layout%3Dgrid%26type%3Ditem%26tracking_id%3Dcd9828e5-a3e6-4bc7-8d9a-39e601a83177&deal_print_id=968eb570-992e-4609-ac74-5a883152d815&promotion_type=TODAY_PROMOTION
+- https://www.mercadolibre.com.co/radio-carro-tactil-7-sistema-android-wifi-gps-usb-camara/p/MCO34858770?pdp_filters=deal:MCO779366-1&hide_psmb=true#promotion_type=TODAY_PROMOTION&searchVariation=MCO34858770&deal_print_id=287675f5-aecc-429f-a481-abc3d3e754ff&position=2&search_layout=grid&type=product&tracking_id=8a931a36-b142-478e-8816-d0f5be6f4da1&deal_print_id=ead69fe0-02ab-4960-9fb0-9bf68fd62091&promotion_type=TODAY_PROMOTION','FALSE','');
+
 
 SELECT setval('histories_id_seq', max(id)) FROM histories;

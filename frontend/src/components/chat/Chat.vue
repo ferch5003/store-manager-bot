@@ -21,8 +21,8 @@ const addNewHistory = (newHistory: ChatHistory) => {
 
 <template>
   <div class="flex flex-col space-y-4 h-screen">
-    <ChatMessages :histories="histories" :loadingMessage="loadingMessage" />
-    <ChatInput @add-new-history="addNewHistory" />
+    <ChatMessages :histories="histories" :loading-message="loadingMessage" />
+    <ChatInput @add-new-history="addNewHistory" :loading-message="loadingMessage" />
   </div>
 </template>
 

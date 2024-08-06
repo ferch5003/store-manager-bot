@@ -20,12 +20,18 @@ importers:
       install:
         specifier: ^0.13.0
         version: 0.13.0
+      link-prevue:
+        specifier: ^2.0.1
+        version: 2.0.1(vue@3.4.35(typescript@5.4.5))
       postcss:
         specifier: ^8.4.40
         version: 8.4.40
       showdown:
         specifier: ^2.1.0
         version: 2.1.0
+      swiper:
+        specifier: ^11.1.9
+        version: 11.1.9
       theme-change:
         specifier: ^2.5.0
         version: 2.5.0
@@ -1856,6 +1862,11 @@ packages:
   lines-and-columns@1.2.4:
     resolution: {integrity: sha512-7ylylesZQ/PV29jhEDl3Ufjo6ZX7gCqJr5F7PKrqc93v7fzSymt1BpwEU8nAUXs8qzzvqhbjhK5QZg6Mt/HkBg==}
 
+  link-prevue@2.0.1:
+    resolution: {integrity: sha512-pWr6Hr4wQhuromuSia76ciALzXkXnhuL5TpIazqc726rhXyBmI3Eh10w4+9oO5pHqBKz3NE0RN48cZwajjvTyQ==}
+    peerDependencies:
+      vue: ^3.3.11
+
   listr2@3.14.0:
     resolution: {integrity: sha512-TyWI8G99GX9GjE54cJ+RrNMcIFBfwMPxc3XTFiAYGN4s10hWROGtOg7+O6u6LE3mNkyld7RSLE6nrKBvTfcs3g==}
     engines: {node: '>=10.0.0'}
@@ -2485,6 +2496,10 @@ packages:
 
   svg-tags@1.0.0:
     resolution: {integrity: sha512-ovssysQTa+luh7A5Weu3Rta6FJlFBBbInjOh722LIt6klpU2/HtdUbszju/G4devcvk8PGt7FCLv5wftu3THUA==}
+
+  swiper@11.1.9:
+    resolution: {integrity: sha512-rflu8zvfGa3x1v/aeSufk4zRJffhOQowyvtJlp46sUBnOqAuk1Rdv5Ldj0AWWBV595iZ+ZMk7VB35ZRtRUomtA==}
+    engines: {node: '>= 4.7.0'}
 
   symbol-tree@3.2.4:
     resolution: {integrity: sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw==}
@@ -4728,6 +4743,10 @@ snapshots:
 
   lines-and-columns@1.2.4: {}
 
+  link-prevue@2.0.1(vue@3.4.35(typescript@5.4.5)):
+    dependencies:
+      vue: 3.4.35(typescript@5.4.5)
+
   listr2@3.14.0(enquirer@2.4.1):
     dependencies:
       cli-truncate: 2.1.0
@@ -5330,6 +5349,8 @@ snapshots:
   supports-preserve-symlinks-flag@1.0.0: {}
 
   svg-tags@1.0.0: {}
+
+  swiper@11.1.9: {}
 
   symbol-tree@3.2.4: {}
 

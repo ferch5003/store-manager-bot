@@ -20,8 +20,10 @@
     "@types/showdown": "^2.0.6",
     "autoprefixer": "^10.4.20",
     "install": "^0.13.0",
+    "link-prevue": "^2.0.1",
     "postcss": "^8.4.40",
     "showdown": "^2.1.0",
+    "swiper": "^11.1.9",
     "theme-change": "^2.5.0",
     "vue": "^3.4.29"
   },

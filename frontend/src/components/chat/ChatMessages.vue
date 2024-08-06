@@ -14,9 +14,7 @@ onUpdated(() => {
   scrollToLastMessage()
 });
 
-const scrollToLastMessage = () => {
-  console.log(chatMessagesContainer)
-
+function scrollToLastMessage() {
   if (!chatMessagesContainer.value) {
     return
   }

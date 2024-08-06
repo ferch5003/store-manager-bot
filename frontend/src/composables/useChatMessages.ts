@@ -13,6 +13,11 @@ export function useChatMessages() {
 
   const handleNewHistory = (history: ChatHistory) => {
     if (typeof history.userMessage !== "undefined" && history.userMessage !== "") {
+      // If user message is in, but bot response is empty then add default response.
+      if (typeof history.botResponse !== "undefined" && history.botResponse === "") {
+        history.botResponse = "Disculpe, no pude encontrar una respuesta a esa petición."
+      }
+
       history.userMessage = converter.makeHtml(history.userMessage)
 
       if (typeof history.botResponse !== "undefined" && history.botResponse !== "") {
