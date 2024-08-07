@@ -1,0 +1,7 @@
+.chat-bubble-image {
+    border-radius: var(--rounded-box, 1rem);
+}
+
+.chat-bubble:has(p .chat-bubble-image) {
+    padding: 10px;
+}

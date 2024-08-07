@@ -8,9 +8,9 @@ import { historyService } from '@/services/historyService'
 
 const { histories, loadingMessage, handleNewHistory } =  useChatMessages()
 
-const addNewHistory = (newHistory: ChatHistory) => {
+const addNewHistory = async (newHistory: ChatHistory) => {
   if (newHistory !== null && typeof newHistory.userMessage !== 'undefined' && newHistory.userMessage.trim() !== '') {
-    handleNewHistory(newHistory)
+    await handleNewHistory(newHistory)
 
     historyService.send(newHistory)
 

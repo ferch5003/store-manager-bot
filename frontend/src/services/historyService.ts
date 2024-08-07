@@ -7,7 +7,7 @@ export class HistoryService  {
   private readonly reconnectInterval: number;
   private reconnectAttempts: number = 0;
   private maxReconnectAttempts: number = 10;
-  private messageCallback: ((history: ChatHistory) => void) | null = null;
+  private messageCallback: ((history: ChatHistory) => Promise<void>) | null = null;
 
   constructor(url: string, reconnectInterval: number = 5000) {
     this.url = url + "/histories";
@@ -30,12 +30,12 @@ export class HistoryService  {
     this.reconnectAttempts = 0;
   }
 
-  private onMessage(event: MessageEvent): void {
+  private async onMessage(event: MessageEvent): void {
     try {
       const historyResponse: ChatHistory = JSON.parse(event.data);
 
-      if (this.messageCallback) {
-        this.messageCallback(toCamelCase(historyResponse));
+      if (await this.messageCallback) {
+        await this.messageCallback(toCamelCase(historyResponse));
       }
     } catch (error) {
       console.error('Error parsing message data:', error);
@@ -70,7 +70,7 @@ export class HistoryService  {
     }
   }
 
-  public setMessageCallback(callback: (history: ChatHistory) => void): void {
+  public setMessageCallback(callback: (history: ChatHistory) => Promise<void>): void {
     this.messageCallback = callback;
   }
 }
