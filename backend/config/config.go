@@ -12,9 +12,13 @@ type EnvVars struct {
 	DSN string
 
 	// Vertex Model environments.
-	ProjectID  string
-	Region     string
-	EndpointID string
+	ProjectTunedID  string
+	RegionTuned     string
+	EndpointTunedID string
+
+	ProjectFlashID string
+	RegionFlash    string
+	ModelFlashID   string
 
 	SAPrivateKeyID      string
 	SAPrivateKey        string
@@ -31,9 +35,13 @@ func NewConfigurations() (*EnvVars, error) {
 
 	dsn := os.Getenv("DSN")
 
-	projectID := os.Getenv("PROJECT_ID")
-	region := os.Getenv("REGION")
-	endpointID := os.Getenv("ENDPOINT_ID")
+	projectTunedID := os.Getenv("PROJECT_TUNED_ID")
+	regionTuned := os.Getenv("REGION_TUNED")
+	endpointTunedID := os.Getenv("ENDPOINT_TUNED_ID")
+
+	projectFlashID := os.Getenv("PROJECT_FLASH_ID")
+	regionFlash := os.Getenv("REGION_FLASH")
+	modelFlashID := os.Getenv("MODEL_FLASH_ID")
 
 	saPrivateKeyID := os.Getenv("SA_PRIVATE_KEY_ID")
 	saPrivateKey := os.Getenv("SA_PRIVATE_KEY")
@@ -45,9 +53,13 @@ func NewConfigurations() (*EnvVars, error) {
 		Port: port,
 		DSN:  dsn,
 
-		ProjectID:  projectID,
-		Region:     region,
-		EndpointID: endpointID,
+		ProjectTunedID:  projectTunedID,
+		RegionTuned:     regionTuned,
+		EndpointTunedID: endpointTunedID,
+
+		ProjectFlashID: projectFlashID,
+		RegionFlash:    regionFlash,
+		ModelFlashID:   modelFlashID,
 
 		SAPrivateKeyID:      saPrivateKeyID,
 		SAPrivateKey:        saPrivateKey,

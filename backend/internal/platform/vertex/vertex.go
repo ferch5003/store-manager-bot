@@ -2,6 +2,7 @@ package vertex
 
 import (
 	"backend/internal/domain"
+	"backend/internal/platform/files"
 	"context"
 	"encoding/json"
 	"errors"
@@ -14,7 +15,20 @@ import (
 	"strings"
 )
 
-const _endpointURL = "https://%s-aiplatform.googleapis.com/v1/projects/%s/locations/%s/endpoints/%s:streamGenerateContent"
+type Config struct {
+	ProjectTunedID  string
+	RegionTuned     string
+	EndpointTunedID string
+
+	ProjectFlashID string
+	RegionFlash    string
+	ModelFlashID   string
+}
+
+const (
+	_endpointURL    = "https://%s-aiplatform.googleapis.com/v1/projects/%s/locations/%s/endpoints/%s:streamGenerateContent"
+	_geminiFlashURL = "https://%s-aiplatform.googleapis.com/v1/projects/%s/locations/%s/publishers/google/models/%s:streamGenerateContent"
+)
 
 type Role string
 
@@ -29,7 +43,13 @@ type Content struct {
 }
 
 type Part struct {
-	Text string `json:"text"`
+	Text       string `json:"text,omitempty"`
+	InlineData *Blob  `json:"inlineData,omitempty"`
+}
+
+type Blob struct {
+	MimeType string `json:"mimeType"`
+	Data     string `json:"data"`
 }
 
 type GeneratedResponse struct {
@@ -43,46 +63,66 @@ type Candidate struct {
 type Client struct {
 	ctx context.Context
 
-	url string
+	tunedURL string
+	flashURL string
 
-	vertexClient    *http.Client
-	sessionContents []Content
+	vertexClient         *http.Client
+	sessionTunedContents []Content
+	sessionFlashContents []Content
 }
 
 func NewVertexClient(
 	ctx context.Context,
-	projectID,
-	region,
-	endpointID,
+	config Config,
 	credentialsPath string,
 	histories []domain.History) (*Client, error) {
-	url := fmt.Sprintf(_endpointURL, region, projectID, region, endpointID)
 	client, err := generateVertexClient(ctx, credentialsPath)
 	if err != nil {
 		return nil, err
 	}
 
-	contents := serializeHistories(histories)
+	tunedContents, flashContents, err := serializeHistories(histories)
+	if err != nil {
+		return nil, err
+	}
+
+	tunedURL := fmt.Sprintf(
+		_endpointURL, config.RegionTuned, config.ProjectTunedID, config.RegionTuned, config.EndpointTunedID)
+	flashURL := fmt.Sprintf(
+		_geminiFlashURL, config.RegionFlash, config.ProjectFlashID, config.RegionFlash, config.ModelFlashID)
 
 	return &Client{
-		url: url,
+		tunedURL: tunedURL,
+		flashURL: flashURL,
 
-		vertexClient:    client,
-		sessionContents: contents,
+		vertexClient:         client,
+		sessionTunedContents: tunedContents,
+		sessionFlashContents: flashContents,
 	}, nil
 }
 
-// SendMessage returns the first response from the Vertex API
-func (c *Client) SendMessage(msg string) (string, error) {
+// SendMessage returns the first response from the Vertex API.
+func (c *Client) SendMessage(data string) (string, error) {
 	// Add user prompt to contents history.
-	c.sessionContents = appendContent(c.sessionContents, User, msg)
+	content, err := getContent(User, data)
+	if err != nil {
+		return "", err
+	}
+
+	var contents []Content
+	_, isMIMEContent := files.GetMIMEType(data)
+	if isMIMEContent {
+		contents = append(c.sessionFlashContents, content)
+	} else {
+		contents = append(c.sessionTunedContents, content)
+	}
 
 	requestBody := map[string]interface{}{
-		"contents": c.sessionContents,
+		"contents": contents,
 		"generationConfig": map[string]interface{}{
-			"maxOutputTokens": 2048,
+			"maxOutputTokens": 8192,
 			"temperature":     1,
-			"topP":            1,
+			"topP":            0.95,
 		},
 		"safetySettings": []map[string]interface{}{
 			{
@@ -110,7 +150,12 @@ func (c *Client) SendMessage(msg string) (string, error) {
 	}
 
 	// Make the API request
-	req, err := http.NewRequest("POST", c.url, strings.NewReader(string(jsonData)))
+	url := c.tunedURL
+	if isMIMEContent {
+		url = c.flashURL
+	}
+
+	req, err := http.NewRequest("POST", url, strings.NewReader(string(jsonData)))
 	if err != nil {
 		return "", err
 	}
@@ -134,6 +179,8 @@ func (c *Client) SendMessage(msg string) (string, error) {
 		return "", err
 	}
 
+	log.Printf("VERTEX RESPONSE: %s", body)
+
 	var response []GeneratedResponse
 	if err := json.Unmarshal(body, &response); err != nil {
 		return "", err
@@ -145,7 +192,21 @@ func (c *Client) SendMessage(msg string) (string, error) {
 	}
 
 	// Add model response to contents history.
-	c.sessionContents = appendContent(c.sessionContents, Model, botResponse)
+	botContent, err := getContent(Model, botResponse)
+	if err != nil {
+		return "", err
+	}
+
+	if len(botContent.Parts) <= 0 {
+		return "", errors.New("no response content from bot")
+	}
+
+	// If there is positive response then add content user to histories.
+	if !isMIMEContent {
+		c.sessionTunedContents = append(c.sessionTunedContents, content, botContent)
+	}
+
+	c.sessionFlashContents = append(c.sessionFlashContents, content, botContent)
 
 	return botResponse, nil
 }
@@ -165,14 +226,46 @@ func generateVertexClient(ctx context.Context, credentialsPath string) (*http.Cl
 	return config.Client(ctx), nil
 }
 
-func appendContent(contents []Content, role Role, msg string) []Content {
+func getContent(role Role, data string) (Content, error) {
+	if len(data) == 0 {
+		return Content{}, errors.New("data is empty")
+	}
+
+	// Check if data is different from audio or image.
+	var parts []Part
+	mimeType, ok := files.GetMIMEType(data)
+	if ok {
+		base64Data, err := files.GetBase64Image(data, mimeType)
+		if err != nil {
+			return Content{}, err
+		}
+
+		parts = []Part{
+			{
+				InlineData: &Blob{
+					MimeType: mimeType,
+					Data:     base64Data,
+				},
+			},
+			{
+				Text: "Si esta imagen es algún producto, me puedes decir cual es y algún " +
+					"de MercadoLibre Colombia link para buscarlo",
+			},
+		}
+	} else {
+		parts = []Part{
+			{
+				Text: data,
+			},
+		}
+	}
+
 	userContent := Content{
 		Role:  role,
-		Parts: []Part{{Text: msg}},
+		Parts: parts,
 	}
-	contents = append(contents, userContent)
 
-	return contents
+	return userContent, nil
 }
 
 func processResponse(generatedResponses []GeneratedResponse) (string, error) {
@@ -192,21 +285,25 @@ func processResponse(generatedResponses []GeneratedResponse) (string, error) {
 	return botResponse, nil
 }
 
-func serializeHistories(histories []domain.History) []Content {
-	var contents []Content
+func serializeHistories(histories []domain.History) (tunedContents []Content, flashContents []Content, err error) {
 	for _, history := range histories {
-		userContent := Content{
-			Role:  User,
-			Parts: []Part{{Text: history.UserMessage}},
+		userContent, err := getContent(User, history.UserMessage)
+		if err != nil {
+			return nil, nil, err
 		}
-		contents = append(contents, userContent)
 
-		modelContent := Content{
-			Role:  Model,
-			Parts: []Part{{Text: history.BotResponse}},
+		modelContent, err := getContent(Model, history.BotResponse)
+		if err != nil {
+			return nil, nil, err
 		}
-		contents = append(contents, modelContent)
+
+		flashContents = append(flashContents, userContent, modelContent)
+
+		// Tuned models (Using gemini-1.0-pro-002) doesn't support multimedia.
+		if !history.Multimedia {
+			tunedContents = append(tunedContents, userContent, modelContent)
+		}
 	}
 
-	return contents
+	return tunedContents, flashContents, nil
 }

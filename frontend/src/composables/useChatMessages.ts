@@ -12,15 +12,14 @@ export function useChatMessages() {
 
   const converter = new showdown.Converter();
 
-  const handleNewHistory = async (history: ChatHistory) => {
+  const handleNewHistory = (history: ChatHistory) => {
     if (typeof history.userMessage !== "undefined" && history.userMessage !== "") {
       // If user message is in, but bot response is empty then add default response.
       if (typeof history.botResponse !== "undefined" && history.botResponse === "") {
         history.botResponse = "Disculpe, no pude encontrar una respuesta a esa petición."
       }
 
-      const isImage = await isBase64UrlImage(history.userMessage)
-      if (isImage) {
+      if (isBase64UrlImage(history.userMessage)) {
         history.userMessage = `<img class="w-96 object-fill chat-bubble-image" alt="user-image" src="${history.userMessage}" />`
       }
 

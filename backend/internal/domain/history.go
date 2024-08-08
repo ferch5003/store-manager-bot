@@ -5,4 +5,5 @@ type History struct {
 	UserMessage string `json:"user_message" db:"user_message"`
 	BotResponse string `json:"bot_response" db:"bot_response"`
 	Feedback    bool   `json:"feedback" db:"feedback"`
+	Multimedia  bool   `json:"multimedia" db:"multimedia"`
 }

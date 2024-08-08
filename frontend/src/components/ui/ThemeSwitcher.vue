@@ -4,8 +4,8 @@
 
 <template>
 <button class="btn btn-primary btn-square">
-  <label class="swap swap-rotate">
-    <input type="checkbox" class="theme-controller" value="dark" />
+  <label for="theme-switcher" class="swap swap-rotate">
+    <input id="theme-switcher" name="theme-switcher" type="checkbox" class="theme-controller" value="dark" />
 
     <!-- sun icon -->
     <svg

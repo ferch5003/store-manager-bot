@@ -1,16 +1,17 @@
-export const isBase64UrlImage = async (base64String: string): Promise<boolean> => {
-  let image = new Image();
-  image.src = base64String;
-  return await (new Promise((resolve) => {
-    image.onload = function() {
-      if (image.height === 0 || image.width === 0) {
-        resolve(false);
-        return;
-      }
-      resolve(true);
-    }
-    image.onerror = () => {
-      resolve(false);
-    }
-  }))
+export const isBase64UrlImage =  (base64String: string): boolean => {
+  // Regular expression to check if a string is Base64-encoded and is an image
+  const base64Regex = /^data:image\/(png|jpg|jpeg|gif|bmp|webp);base64,/;
+
+  if (!base64Regex.test(base64String)) {
+    return false;
+  }
+
+  const base64Data = base64String.replace(base64Regex, '');
+
+  try {
+    atob(base64Data);
+    return true;
+  } catch (e) {
+    return false;
+  }
 }

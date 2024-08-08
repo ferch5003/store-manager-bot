@@ -101,9 +101,11 @@ func TestRepositorySave_Successful(t *testing.T) {
 		BotResponse: "Test",
 		Feedback:    true,
 	}
+
+	addRow := sqlmock.NewRows([]string{"id"}).AddRow("1")
 	mock.ExpectBegin()
 	mock.ExpectPrepare(`INSERT INTO histories`)
-	mock.ExpectExec(`INSERT INTO histories`).WillReturnResult(sqlmock.NewResult(1, 1))
+	mock.ExpectQuery(`INSERT INTO histories`).WillReturnRows(addRow)
 	mock.ExpectCommit()
 
 	repository := NewRepository(dbx)
@@ -247,7 +249,7 @@ func TestRepositorySave_FailsDueToFailingExecWithFailingRollback(t *testing.T) {
 
 	mock.ExpectBegin()
 	mock.ExpectPrepare(`INSERT INTO histories`)
-	mock.ExpectExec(`INSERT INTO histories`).WillReturnError(expectedExecError)
+	mock.ExpectQuery(`INSERT INTO histories`).WillReturnError(expectedExecError)
 	mock.ExpectRollback().WillReturnError(expectedRollbackError)
 
 	repository := NewRepository(dbx)
@@ -283,9 +285,10 @@ func TestRepositorySave_FailsDueToFailingCommit(t *testing.T) {
 	}
 	expectedError := errors.New("sql: transaction has already been committed or rolled back")
 
+	addRow := sqlmock.NewRows([]string{"id"}).AddRow("1")
 	mock.ExpectBegin()
 	mock.ExpectPrepare(`INSERT INTO histories`)
-	mock.ExpectExec(`INSERT INTO histories`).WillReturnResult(sqlmock.NewResult(1, 1))
+	mock.ExpectQuery(`INSERT INTO histories`).WillReturnRows(addRow)
 	mock.ExpectCommit().WillReturnError(expectedError)
 
 	repository := NewRepository(dbx)

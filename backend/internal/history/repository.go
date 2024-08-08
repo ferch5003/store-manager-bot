@@ -9,10 +9,10 @@ import (
 
 // Queries.
 const (
-	_getAllHistoriesStmt = `SELECT id, user_message, bot_response, feedback FROM histories;`
+	_getAllHistoriesStmt = `SELECT id, user_message, bot_response, feedback, multimedia FROM histories;`
 	_saveHistoryStmt     = `INSERT INTO 
-    						histories (user_message, bot_response, feedback)
-							VALUES ($1, $2, $3)
+    						histories (user_message, bot_response, feedback, multimedia)
+							VALUES ($1, $2, $3, $4)
 							RETURNING id;`
 )
 
@@ -61,7 +61,12 @@ func (r *repository) Save(ctx context.Context, history domain.History) (int, err
 	}()
 
 	var id int
-	err = stmt.QueryRowxContext(ctx, history.UserMessage, history.BotResponse, history.Feedback).Scan(&id)
+	err = stmt.QueryRowxContext(
+		ctx,
+		history.UserMessage,
+		history.BotResponse,
+		history.Feedback,
+		history.Multimedia).Scan(&id)
 	if err != nil {
 		if rollbackErr := tx.Rollback(); rollbackErr != nil {
 			return 0, rollbackErr
