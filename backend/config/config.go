@@ -28,7 +28,7 @@ type EnvVars struct {
 }
 
 func NewConfigurations() (*EnvVars, error) {
-	port := os.Getenv("PORT")
+	port := os.Getenv("BACKEND_PORT")
 	if port == "" {
 		port = "8080"
 	}

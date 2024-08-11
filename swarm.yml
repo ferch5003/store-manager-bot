@@ -1,38 +1,43 @@
-version: '3.8'
+version: '3.7'
 
 volumes:
   pgdata:
+  caddy_data:
+    external: true
+  caddy_config:
 
 services:
-  backend:
-    build:
-      context: ./backend
-      dockerfile: ./Dockerfile
-    restart: always
-    ports:
-      - "3000:80"
+  caddy:
+    image: ferch5003/sm-micro-caddy:1.0.0
     deploy:
       mode: replicated
       replicas: 1
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - caddy_data:/data
+      - caddy_config:/config
+
+  backend:
+    image: ferch5003/sm-backend:1.0.0
+    deploy:
+      mode: replicated
+      replicas: 1
+    ports:
+      - "3000:80"
     env_file:
       - ./backend/.env
-    user: '${UID}:${GID}'
     depends_on:
       - postgres-bot
 
   frontend:
-    build:
-      context: ./frontend
-      dockerfile: ./Dockerfile
-    restart: always
-    ports:
-      - "8080:8080"
+    image: ferch5003/sm-frontend:1.0.0
     deploy:
       mode: replicated
       replicas: 1
     env_file:
       - ./frontend/.env
-    user: '${UID}:${GID}'
     depends_on:
       - backend
 
@@ -40,7 +45,6 @@ services:
     image: "postgres:latest"
     ports:
       - "5432:5432"
-    restart: always
     deploy:
       mode: replicated
       replicas: 1

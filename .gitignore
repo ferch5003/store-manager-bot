@@ -41,3 +41,13 @@ coverage
 /cypress/screenshots/
 
 *.tsbuildinfo
+
+# Caddyfile
+Caddyfile
+Caddyfile.production
+
+# Environments for secrets.
+./backend/enviromental/*
+!./backend/enviromental/.keep
+./frontend/enviromental/*
+!./frontend/enviromental/.keep

@@ -7,7 +7,7 @@ export class HistoryService  {
   private readonly reconnectInterval: number;
   private reconnectAttempts: number = 0;
   private maxReconnectAttempts: number = 10;
-  private messageCallback: ((history: ChatHistory) => void | null) = null;
+  private messageCallback: ((history: ChatHistory) => void) | null = null;
 
   constructor(url: string, reconnectInterval: number = 5000) {
     this.url = url + "/histories";
