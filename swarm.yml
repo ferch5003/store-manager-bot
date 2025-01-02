@@ -2,34 +2,22 @@ version: '3.7'
 
 volumes:
   pgdata:
-  caddy_data:
-    external: true
-  caddy_config:
 
 services:
-  caddy:
-    image: ferch5003/sm-micro-caddy:1.0.0
-    deploy:
-      mode: replicated
-      replicas: 1
-    ports:
-      - "80:80"
-      - "443:443"
-    volumes:
-      - caddy_data:/data
-      - caddy_config:/config
-
   backend:
     image: ferch5003/sm-backend:1.0.0
     deploy:
       mode: replicated
       replicas: 1
     ports:
-      - "3000:80"
+      - "3002:80"
     env_file:
       - ./backend/.env
     depends_on:
       - postgres-bot
+    networks:
+      - smb_app_default
+      - caddy_network
 
   frontend:
     image: ferch5003/sm-frontend:1.0.0
@@ -40,6 +28,9 @@ services:
       - ./frontend/.env
     depends_on:
       - backend
+    networks:
+      - smb_app_default
+      - caddy_network
 
   postgres-bot:
     image: "postgres:latest"
@@ -56,3 +47,12 @@ services:
     volumes:
       - ./pgdata/histories.sql:/docker-entrypoint-initdb.d/histories.sql
     user: '${UID}:${GID}'
+    networks:
+      - smb_app_default
+      - caddy_network
+
+networks:
+  smb_app_default:
+    driver: overlay
+  proxy:
+    external: true

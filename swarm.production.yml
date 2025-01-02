@@ -1,0 +1,35 @@
+version: '3.7'
+
+volumes:
+  pgdata:
+
+services:
+  backend:
+    image: ferch5003/sm-backend:1.0.0
+    deploy:
+      mode: replicated
+      replicas: 1
+    ports:
+      - "3002:80"
+    env_file:
+      - ./backend/.env
+    depends_on:
+      - postgres-bot
+    networks:
+      - caddy_server_default
+
+  frontend:
+    image: ferch5003/sm-frontend:1.0.0
+    deploy:
+      mode: replicated
+      replicas: 1
+    env_file:
+      - ./frontend/.env
+    depends_on:
+      - backend
+    networks:
+      - caddy_server_default
+
+networks:
+  caddy_server_default:
+    external: true
